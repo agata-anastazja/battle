@@ -12,6 +12,7 @@ class Battle < Sinatra::Base
   get '/play' do
     @player_1 = $player_1.name
     @player_2 = $player_2.name
+    @hp = $player_2.hit_points
     erb :play
   end
 
@@ -19,14 +20,15 @@ class Battle < Sinatra::Base
     p params
     $player_1 = Player.new(params[:player_1])
     $player_2 = Player.new(params[:player_2])
-
     redirect '/play'
   end
 
   get '/attack' do
     @player_1 = $player_1.name
     @player_2 = $player_2.name
+    @hp = $player_2.reduce_hit_points
     erb :attack
+    redirect '/play'
   end
 
   # start the server if ruby file executed directly
