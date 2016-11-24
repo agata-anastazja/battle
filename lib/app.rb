@@ -13,23 +13,23 @@ class Battle < Sinatra::Base
   post '/names' do
     player1 = params[:player1]
     player2 = params[:player2]
-    $game = Game.new(player1, player2, Player)
+    @@game = Game.new(player1, player2, Player)
     redirect to('/play')
   end
 
   get '/play' do
-    @game = $game
+    @game = @@game
     erb(:play)
   end
 
   get '/attack' do
-    @game = $game
+    @game = @@game
     @game.attack
     erb(:attack)
   end
 
   post '/switch-turns' do
-    @game = $game
+    @game = @@game
     if !@game.players.last.dead?
       @game.turn
       redirect('/play')
@@ -39,7 +39,7 @@ class Battle < Sinatra::Base
   end
 
   get '/end_game' do
-    @game = $game
+    @game = @@game
     erb(:end_game)
   end
 
