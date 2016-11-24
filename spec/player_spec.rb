@@ -3,6 +3,7 @@ require 'player'
 describe Player do
 
   subject(:player){ described_class.new( name ) }
+  subject(:player2) {described_class.new(name)}
   let(:name){double :name}
 
   it "returns it's own name" do
@@ -13,9 +14,7 @@ describe Player do
     expect(player.hit_points).to eq(100)
   end
 
-  it 'reduces player_2 points by 10' do
-    expect(player.reduce_hit_points).to eq(90)
-  end
+
 
 
 end
