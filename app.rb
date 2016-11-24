@@ -1,10 +1,9 @@
 require 'sinatra/base'
-require 'player'
+require_relative './lib/player.rb'
 
 class Battle < Sinatra::Base
 
   enable :sessions
-  $player_names =
 
   get '/' do
     erb :index
@@ -20,10 +19,6 @@ class Battle < Sinatra::Base
     # @player_1 = params[:player_1]
     # @player_2 = params[:player_2]
     redirect '/play'
-  end
-
-  get '/points' do
-    erb :points
   end
 
   get '/attack' do
