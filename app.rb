@@ -16,7 +16,6 @@ class Battle < Sinatra::Base
   end
 
   post '/battle-names' do
-    p params
     player_1 = Player.new(params[:player_1])
     player_2 = Player.new(params[:player_2])
     $game = Game.new(player_1, player_2)
@@ -26,11 +25,16 @@ class Battle < Sinatra::Base
   get '/attack' do
     @game = $game
     @game.attack
-    @game.switch_player
-    erb :hit_confirm
+    if @game.player_2.hit_points == 0
+      erb :lost
+    else
+      @game.switch_player
+      erb :hit_confirm
+    end
   end
 
   get '/hit_confirm' do
+
     erb :hit_confirm
     redirect '/play'
   end
