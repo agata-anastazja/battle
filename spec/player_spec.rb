@@ -15,6 +15,4 @@ describe Player do
   end
 
 
-
-
 end
