@@ -1,6 +1,6 @@
 class Game
 
-  attr_reader :player_1, :player_2
+  attr_reader :player_1, :player_2, :players
 
   def initialize(player_1, player_2)
     @players = [player_1, player_2]
@@ -14,7 +14,13 @@ class Game
     @players.last
   end
 
-  def attack(player)
-    player.receive_damage
+  def attack
+    attacked_player = @players.last
+    attacked_player.receive_damage
   end
+
+  def switch_player
+    @players.reverse!
+  end
+
 end

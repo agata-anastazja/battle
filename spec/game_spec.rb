@@ -20,7 +20,15 @@ describe Game do
   context "when #attack" do
     it 'reduces player_2 points by 10' do
       expect(player_2).to receive(:receive_damage)
-      game.attack(player_2)
+      game.attack
     end
+  end
+
+  context "#switch_player" do
+    it "changes the player" do
+      game.switch_player
+      expect(game.players).to eq [player_2, player_1]
+    end
+
   end
 end

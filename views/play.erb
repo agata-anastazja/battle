@@ -1,6 +1,7 @@
 <%= @game.player_1.name%> vs. <%= @game.player_2.name %></br>
 <%= @game.player_1.name %> <%= @game.player_1.hit_points %>/100 points
 <%= @game.player_2.name %> <%= @game.player_2.hit_points %>/100 points
+<%= @game.player_1.name.upcase %> ATTACK!
 <form action="/attack" method="get">
   <input type="submit" value="ATTACK!">
 </form>
