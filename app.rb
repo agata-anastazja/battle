@@ -27,6 +27,11 @@ class Battle < Sinatra::Base
     @game = $game
     @game.attack
     @game.switch_player
+    erb :hit_confirm
+  end
+
+  get '/hit_confirm' do
+    erb :hit_confirm
     redirect '/play'
   end
 

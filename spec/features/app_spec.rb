@@ -11,21 +11,17 @@ RSpec.feature "Battle" do
     expect(page).to have_content 'Dan 100/100 points'
   end
 
-  # scenario "User gets confirmation of attack" do
-  #   sign_in_and_play
-  #   click_button 'ATTACK!'
-  #   expect(page).to have_content ('Tom has attacked Dan!')
-  # end
-
-  scenario "Players 2 points reduced upon attack" do
+  scenario "Player_2 points reduced upon attack" do
     sign_in_and_play
     click_button 'ATTACK!'
+    click_button 'FIGHT AGAIN!'
     expect(page).to have_content "Dan 90/100 points"
   end
 
   scenario "First player to attack is Tom" do
     sign_in_and_play
     click_button 'ATTACK!'
+    click_button 'FIGHT AGAIN!'
     expect(page).to have_content "DAN ATTACK!"
 
   end
@@ -33,8 +29,16 @@ RSpec.feature "Battle" do
   scenario "Switches players upon attack" do
     sign_in_and_play
     click_button 'ATTACK!'
+    click_button 'FIGHT AGAIN!'
     click_button 'ATTACK!'
+    click_button 'FIGHT AGAIN!'
     expect(page).to have_content "TOM ATTACK!"
+  end
+
+  scenario "Player gets POW confirm of attack" do
+    sign_in_and_play
+    click_button 'ATTACK!'
+    expect(page).to have_content "OUCH! Dan you've been hit!"
   end
 
 end
